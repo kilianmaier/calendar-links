@@ -44,7 +44,19 @@ $to = DateTime::createFromFormat('Y-m-d H:i', '2018-02-01 18:00');
 $link = Link::create('Sebastian\'s birthday', $from, $to)
     ->description('Cookies & cocktails!')
     ->address('Samberstraat 69D, 2060 Antwerpen')
-    ->timezone('Europe/Bucharest');
+
+    // Google calendar likn extra fields
+    ->timezone('Europe/Bucharest')
+
+    // ICS extra fields
+    ->prodid('-//Company//ICS Link//EN')
+    ->uid(3)
+    ->status('Some status')
+    ->dtstamp(DateTime::now())
+    ->attendee('Attendee name 1', 'Attendee email 2')
+    ->attendee('Attendee name 2', 'Attendee email 2')
+    ->attendee('Attendee name 3', 'Attendee email 3')
+    ->organizer('Organizer name', 'Organizer email')
 
 // Generate a link to create an event on Google calendar
 echo $link->google();

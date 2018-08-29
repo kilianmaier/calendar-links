@@ -18,6 +18,9 @@ use Spatie\CalendarLinks\Exceptions\InvalidLink;
 class Link
 {
     /** @var string */
+    protected $language = 'en';
+
+    /** @var string */
     protected $title;
 
     /** @var \DateTime */
@@ -26,8 +29,17 @@ class Link
     /** @var \DateTime */
     protected $to;
 
+    /** @var \DateTime */
+    protected $dtstamp;
+
     /** @var string */
     protected $description;
+
+    /** @var string */
+    protected $organizer;
+
+    /** @var array */
+    protected $attendee = [];
 
     /** @var boolean */
     protected $allDay;
@@ -37,6 +49,15 @@ class Link
 
     /** @var string */
     protected $timezone;
+
+    /** @var string */
+    protected $status;
+
+    /** @var int */
+    protected $uid;
+
+    /** @var int */
+    protected $prodid;
 
 
     public function __construct(string $title, DateTime $from, DateTime $to, bool $allDay = false)
@@ -84,6 +105,32 @@ class Link
     }
 
     /**
+     * @param string $name
+     * @param string $email
+     *
+     * @return $this
+     */
+    public function organizer(string $name, string $email = '')
+    {
+        $this->organizer = 'CN=' . $name . ';LANGUAGE=' . $this->language . ':mailto:' . $email;
+
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @param string $email
+     *
+     * @return $this
+     */
+    public function attendee(string $name, string $email = '')
+    {
+        $this->attendee[] = 'CN=' . $name . ';LANGUAGE=' . $this->language . ':mailto:' . $email;
+
+        return $this;
+    }
+
+    /**
      * @param string $timezone
      *
      * @return $this
@@ -96,6 +143,54 @@ class Link
     }
 
     /**
+     * @param \DateTime $dtstamp
+     *
+     * @return $this
+     */
+    public function dtstamp(DateTime $dtstamp)
+    {
+        $this->dtstamp = $dtstamp->format('Ymd\THis');
+
+        return $this;
+    }
+
+    /**
+     * @param string $status
+     *
+     * @return $this
+     */
+    public function status(string $status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @param int $uid
+     *
+     * @return $this
+     */
+    public function uid(int $uid)
+    {
+        $this->uid = $uid;
+
+        return $this;
+    }
+
+    /**
+     * @param int $prodid
+     *
+     * @return $this
+     */
+    public function prodid(int $prodid)
+    {
+        $this->prodid = $prodid;
+
+        return $this;
+    }
+
+    /**
      * @param string $address
      *
      * @return $this
@@ -103,6 +198,18 @@ class Link
     public function address(string $address)
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * @param string $language
+     *
+     * @return $this
+     */
+    public function language(string $language)
+    {
+        $this->language = $language;
 
         return $this;
     }
