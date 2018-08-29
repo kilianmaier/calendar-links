@@ -92,17 +92,17 @@ class Link
         return $this;
     }
 
-    public function google(): string
+    public function google() : string
     {
         return (new Google())->generate($this);
     }
 
-    public function ics(): string
+    public function ics() : string
     {
         return (new Ics())->generate($this);
     }
 
-    public function yahoo(): string
+    public function yahoo() : string
     {
         return (new Yahoo())->generate($this);
     }
