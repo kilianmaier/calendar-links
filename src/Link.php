@@ -56,7 +56,7 @@ class Link
     /** @var int */
     protected $uid;
 
-    /** @var int */
+    /** @var string */
     protected $prodid;
 
 
@@ -179,11 +179,11 @@ class Link
     }
 
     /**
-     * @param int $prodid
+     * @param string $prodid
      *
      * @return $this
      */
-    public function prodid(int $prodid)
+    public function prodid(string $prodid)
     {
         $this->prodid = $prodid;
 
