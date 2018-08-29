@@ -37,7 +37,7 @@ class Ics implements Generator
         }
 
         if ($link->attendee) {
-            foreach ($thik->attendee as $value) {
+            foreach ($link->attendee as $value) {
                 $url[] = 'ATTENDEE;' . $value;
             }
         }
