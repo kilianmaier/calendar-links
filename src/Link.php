@@ -35,6 +35,9 @@ class Link
     /** @var string */
     protected $address;
 
+    /** @var string */
+    protected $timezone;
+
 
     public function __construct(string $title, DateTime $from, DateTime $to, bool $allDay = false)
     {
@@ -76,6 +79,18 @@ class Link
     public function description(string $description)
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @param string $timezone
+     *
+     * @return $this
+     */
+    public function timezone(string $timezone)
+    {
+        $this->timezone = $timezone;
 
         return $this;
     }

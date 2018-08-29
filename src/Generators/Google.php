@@ -22,6 +22,10 @@ class Google implements Generator
             $url .= '&location=' . urlencode($link->address);
         }
 
+        if ($link->timezone) {
+            $url .= '&ctz=' . urlencode($link->timezone);
+        }
+
         $url .= '&sprop=&sprop=name:';
 
         return $url;
